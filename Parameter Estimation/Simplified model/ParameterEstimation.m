@@ -1,4 +1,4 @@
-b2_est = 0.0002;
+b2_est = 0.00001;
 Order = [1 1 2];
 Parameters = [par.I2;par.m2;par.g;par.c2;b2_est];
 InitialStates = [-pi/2;0];

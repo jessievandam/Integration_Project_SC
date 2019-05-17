@@ -25,5 +25,5 @@ zeta_mean = mean(zeta);
 
 omega_n = omega_d_mean/(sqrt(1-zeta_mean^2));
 
-I = (par.m2*par.g*par.c2)/(omega_n^2);
-b = 2*zeta_mean*omega_n*I;
+%I = (par.m2*par.g*par.c2)/(omega_n^2);
+b = 2*zeta_mean*omega_n*par.I2;
