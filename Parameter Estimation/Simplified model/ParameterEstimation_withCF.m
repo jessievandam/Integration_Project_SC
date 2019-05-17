@@ -1,6 +1,6 @@
-b2_est = 0.0002; % damping of joint [kg/s]
-mu_est = 0.15;   % friction coefficient for contact between ring and cylinder [-]
-r_est = 0.003;   % radius of fixed rigid cylinder [m]
+b2_est = 0.00009; % damping of joint [kg/s]
+mu_est = 0.15;    % friction coefficient for contact between ring and cylinder [-]
+r_est = 0.003;    % radius of fixed rigid cylinder [m]
 Order = [1 0 2];
 Parameters = [par.I2;par.m2;par.g;par.c2;b2_est;mu_est;r_est];
 InitialStates = [-pi/2;0];
