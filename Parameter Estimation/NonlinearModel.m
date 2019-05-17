@@ -7,7 +7,6 @@ C = [-matrcomp.P3*x(4)*sin(x(2)) -matrcomp.P3*(x(3)+x(4))*sin(x(2));
 G = [-matrcomp.g1*sin(x(1))-matrcomp.g2*sin(x(1)+x(2));
     -matrcomp.g2*sin(x(1)+x(2))];
 
-
 ddtheta = pinv(M)*(-C*[x(3);x(4)]-G+u);
 
 end
