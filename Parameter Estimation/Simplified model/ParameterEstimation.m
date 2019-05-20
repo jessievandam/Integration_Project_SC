@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 b2_est = 0.00001;
-=======
 b2_est = 0.00009;
->>>>>>> 9bbc1c24e48a68199dede056b431c367f2cfdfe8
 Order = [1 1 2];
 Parameters = [par.I2;par.m2;par.g;par.c2;b2_est];
 InitialStates = [-pi/2;0];
 
-nonlinmod_discrete = c2d(nonlinmod,0.01,'zoh');
+%nonlinmod_discrete = c2d(nonlinmod,0.01,'zoh');
 m = idnlgrey('nonlinmod',Order,Parameters,InitialStates,0);
 
 m.Parameters(1).Fixed = true;

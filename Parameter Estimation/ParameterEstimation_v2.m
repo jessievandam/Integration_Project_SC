@@ -1,9 +1,9 @@
 % construct nonlinear model
 b1_est = 4.8;      % damping of first joint [kg/s]  
 b2_est = 0.00009;  % damping of second joint [kg/s]
-Order = [2 1 4];
+Order = [2 2 4];
 Parameters = [matrcomp.P1; matrcomp.P2; matrcomp.P3; matrcomp.g1; matrcomp.g2; b1_est; b2_est];
-InitialStates = [-pi; -3/2*pi; 0; 0];
+InitialStates = [-pi; 0; pi/8; 0];
 
 m = idnlgrey('NonlinearModel_v2',Order,Parameters,InitialStates,0);
 
@@ -31,10 +31,9 @@ data_th1 = -data_sensor_th1-2*pi;
 data_th2 = data_sensor_th2;
 
 % convert to id data
-data_id_th1 = iddata(data_th1,zeros(size(data_th1)),0.01);
-data_id_th2 = iddata(data_th2,zeros(size(data_th2)),0.01);
+data_id = iddata([data_th1 data_th2],zeros(size([data_th1 data_th2])),0.01);
+% data_id_th2 = iddata(data_th2,zeros(size(data_th2)),0.01);
 
 % compare sensor real data with nonlinear model data
-m_th1 = nlgreyest(data_id_th1,m(1));
-m_th2 = nlgreyest(data_id_th2,m(2));
+m2 = nlgreyest(data_id,m);
 
