@@ -1,4 +1,5 @@
 %% Simulate model
+run('dynrotpend.m')
 b2_lin = 4.42687289201465e-05;
 b2_noCF = 1.01304008857726e-05; 
 b2_CF = 0.0015;
