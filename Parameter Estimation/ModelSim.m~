@@ -16,7 +16,7 @@ nonlinmodel_doublepend = @(t,theta) NonlinearModel_v2(t,theta,0,matrcomp.P1,matr
 [t_lin,x_lin] = ode45(nonlinmodel, [0 60], [-1/2*pi;0]);
 [t_noCF,x_noCF] = ode45(nonlinmodel_noCF, [0 60], [-1/2*pi;0]);
 [t_CF,x_CF] = ode45(nonlinmodel_withCF,[0 60], [-1/2*pi;0]);
-[t_nonlin,x_nonlin] = ode45(nonlinmodel_doublepend, [0 60], [-pi; 0; -pi/8; 0]);
+[t_nonlin,x_nonlin] = ode45(nonlinmodel_doublepend, [0 60], [-1/2*pi;0;0;0]);
 load('Data_real_simplifiedv3');
 
 figure(1);
@@ -42,7 +42,4 @@ title('Model without CF vs real data')
 
 figure(4);
 hold on
-plot(t_nonlin,x_nonlin(:,1))
-%plot(theta2.time,-theta2.data)
-legend('ode');%,'real')
-title('Full nonlindear model vs real data')
+plot(t_nonlin,x
