@@ -1,4 +1,4 @@
-function [dtheta, y] = NonlinearModel(t,theta,u,P1,P2,P3,g1,g2,b1,b2,varargin)
+function [dtheta, y] = NonlinearModel_v2(t,theta,u,P1,P2,P3,g1,g2,b1,b2,varargin)
 
 theta(2) = theta(2)-theta(1);
 

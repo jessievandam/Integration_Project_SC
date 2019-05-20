@@ -35,6 +35,6 @@ data_id_th1 = iddata(data_th1,zeros(size(data_th1)),0.01);
 data_id_th2 = iddata(data_th2,zeros(size(data_th2)),0.01);
 
 % compare sensor real data with nonlinear model data
-m_th1 = nlgreyest(data_id_th1,m(1));
-m_th2 = nlgreyest(data_id_th2,m(2));
+m2 = nlgreyest([data_id_th1; data_id_th2],m);
+
 
