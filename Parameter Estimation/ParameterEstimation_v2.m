@@ -1,7 +1,7 @@
 % construct nonlinear model
 b1_est = 4.8;      % damping of first joint [kg/s]  
 b2_est = 0.00009;  % damping of second joint [kg/s]
-Order = [2 2 4];
+Order = [1 1 4];
 Parameters = [matrcomp.P1; matrcomp.P2; matrcomp.P3; matrcomp.g1; matrcomp.g2; b1_est; b2_est];
 InitialStates = [-pi; 0; pi/8; 0];
 
@@ -32,7 +32,7 @@ data_th2 = data_sensor_th2;
 
 % convert to id data
 data_id = iddata([data_th1 data_th2],zeros(size([data_th1 data_th2])),0.01);
-% data_id_th2 = iddata(data_th2,zeros(size(data_th2)),0.01);
+% data_id = iddata(data_th1,zeros(size(data_th1)),0.01);
 
 % compare sensor real data with nonlinear model data
 m2 = nlgreyest(data_id,m);

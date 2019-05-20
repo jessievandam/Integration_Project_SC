@@ -11,8 +11,8 @@ G = [-g1*sin(theta(1,1))-g2*sin(theta(1,1)+theta(2,1));
 
 dtheta(1,1) = theta(3,1);
 dtheta(2,1) = theta(4,1);
-dtheta(3:4,1) = pinv(M)*(-C*[theta(3,1);theta(4,1)]-G+u);
+dtheta(3:4,1) = pinv(M)*(-C*[theta(3,1);theta(4,1)]-G+u(1:2,1));
 
 y = [theta(1,1); theta(2,1)];
-
+% y = theta(1,1);
 end
