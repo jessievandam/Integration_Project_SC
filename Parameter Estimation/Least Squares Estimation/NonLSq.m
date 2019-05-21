@@ -26,7 +26,7 @@ lb_b2 = 0;
 ub_b2 = 10;
 
 error_b2 = @(vec) MakeError_singlepend_b2(vec,par,data);
-par_min_single_b2 = lsqnonlin(error_b2,b2_est,lb,ub);
+par_min_single_b2 = lsqnonlin(error_b2,b2_est,lb_b2,ub_b2);
 
 %% Comparing model data to real data - single pendulum with CF
 mu_est = 0.15;
@@ -78,3 +78,27 @@ vec_est = [b1_est;b2_est];
 
 error = @(vec) MakeError_doublepend(vec,matrcomp,data);
 par_min_double = lsqnonlin(error,vec_est);
+
+%% Comparing model data to real data - double pendulum
+
+% load measured senspr data
+load('data_medium_meas_nonlinear');
+data_sensor_th1 = theta1.Data;
+data_sensor_th2 = theta2.Data;
+
+% filter measured sensor data, such that theta_1 makes one quarter circle from
+% 0 to -1/2*pi (in sensor data) and theta_2 from 0 to 1/2*pi
+data_sensor_th1 = data_sensor_th1(1340:1621);
+data_sensor_th2 = data_sensor_th2(1340:1621);
+
+% convert sensor data to the nonlinear model scale
+data_th1 = -data_sensor_th1-pi;
+data_th2 = data_sensor_th2;
+
+b2_est = 4.8;
+lb_double = [0.097;0.097;0.08;0.15;0.055;0];
+ub_double = [0.103;0.103;0.12;0.21;0.065;10];
+vec_est_double = [par.l1;par.l2;par.I1;par.m1;par.c1;b2_est];
+
+error_double = @(vec) MakeError_doublepend(vec,par,par_min_single,data_th1);
+par_min_double = lsqnonlin(error_double,vec_est_double,lb_double,ub_double);
