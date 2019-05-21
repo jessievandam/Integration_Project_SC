@@ -21,4 +21,6 @@ data = data(29:end);
 
 data_id = iddata(data,zeros(size(data)),0.01);
 
-m2 = nlgreyest(data_id,m);
+opt = nlgreyestOptions;
+opt.display = 'on';
+m2 = nlgreyest(data_id,m, opt);

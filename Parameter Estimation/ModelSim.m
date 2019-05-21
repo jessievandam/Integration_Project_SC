@@ -22,7 +22,7 @@ load('Data_real_simplifiedv3');
 figure(1);
 hold on;
 plot(t_lin,x_lin(:,1))
-plot(theta2.time,-theta2.data)
+plot(theta2.time,-theta2.data(29:end))
 legend('ode','real')
 title('Linear model vs real data')
 
