@@ -8,7 +8,7 @@ data = data(29:3400);
 
 vec_est = [par.I2;par.m2;par.c2;b2_est];
 
-lb = [0.00001;0.055;0.04;0];
+lb = [0.00001;0.055;0.04;-Inf];
 ub = [0.0002;0.065;0.05;1];
 
 error = @(vec) MakeError_singlepend(vec,par,data);

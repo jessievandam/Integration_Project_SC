@@ -1,10 +1,10 @@
-%% Simulate model
+%% Simulate model for single pendulum
 b2_lin = 4.42687289201465e-05;
 b2_noCF = 1.01304008857726e-05; 
 b2_CF = 0.0015;
 mu = 0.1803;
 r = 0.003;
-nonlinmodel = @(t,theta) nonlinmod(t,theta,0,par.I2,par.m2,par.g,par.c2,b2_lin);
+nonlinmodel = @(t,theta) nonlinmod(t,theta,0,par_min_single(1),par_min_single(2),par.g,par_min_single(3),par_min_single(4));
 nonlinmodel_noCF = @(t,theta) nonlinmod(t,theta,0,par.I2,par.m2,par.g,par.c2,b2_lin);
 nonlinmodel_withCF = @(t,theta) nonlinmod_withCF(t,theta,0,par.I2,par.m2,par.g,par.c2,b2_CF,mu,r);
 
