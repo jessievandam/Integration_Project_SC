@@ -1,5 +1,5 @@
 % construct nonlinear model
-b1_est = 4.8;      % damping of first joint [kg/s]  
+b1_est = 4.8;      % damping of first joint  [kg/s]  
 b2_est = 0.00009;  % damping of second joint [kg/s]
 Order = [1 1 4];
 Parameters = [matrcomp.P1; matrcomp.P2; matrcomp.P3; matrcomp.g1; matrcomp.g2; b1_est; b2_est];
