@@ -1,4 +1,4 @@
-function error = MakeError_doublepend(vec,matrcomp,data)
+function [error,y0] = MakeError_doublepend(vec,matrcomp,data)
     b1 = vec(1);
     b2 = vec(2);
 
