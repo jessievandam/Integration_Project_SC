@@ -21,6 +21,25 @@ title('Linear model vs real data')
 
 VAF_singlepend_noCF = (1-(var(-theta2.data(29:3400)-y0))/(var(-theta2.data(29:3400))))*100;
 
+
+%% Simulate model for single pendulum, without CF, b2 only
+t0 = 0:.01:33.71; 
+
+nonlinmodel = @(t,theta) nonlinmod(t,theta,0,par.I2,par.m2,par.g,par.c2,par_min_single_b2);
+[t_single_b2,x_single_b2] = ode45(nonlinmodel, [0 34], [-1/2*pi;0]);
+y0_b2 = interp1(t_single_b2,x_single_b2,t0);
+y0_b2 = y0_b2(:,1);
+load('Data_real_simplifiedv3');
+
+figure(1);
+hold on;
+plot(t0,y0_b2)
+plot(theta2.time(1:3372),-theta2.data(29:3400))
+legend('ode','real')
+title('Linear model vs real data')
+
+VAF_singlepend_b2 = (1-(var(-theta2.data(29:3400)-y0_b2))/(var(-theta2.data(29:3400))))*100;
+
 %% Simulate model for single pendulum, with CF
 b2_CF = 0.0015;
 mu = 0.1803;
@@ -41,3 +60,24 @@ legend('ode','real')
 title('Linear model vs real data')
 
 VAF_singlepend_CF = (1-(var(-theta2.data(29:3400)-y0_CF))/(var(-theta2.data(29:3400))))*100;
+
+%% Simulate model for double pendulum
+t0_double = 0:.01:2.81;
+
+nonlinmodel_double = @(t,theta) NonlinearModel_v2(t,theta,[0;0],par,par_min_double(1),par_min_double(2),par_min_double(3),par_min_single(1),par_min_double(4),par_min_single(2),par_min_double(5),par_min_single(3),par_min_double(6),par_min_single(4));
+[t_double,x_double] = ode45(nonlinmodel_double, [0 3], [-pi;0;-0.5175;0]);
+y0_double = interp1(t_double,x_double,t0_double);
+y0_double = y0_double(:,1);
+load('data_medium_meas_nonlinear');
+data_sensor_th1 = theta1.Data;
+data_sensor_th1 = data_sensor_th1(1340:1621);
+data_th1 = -data_sensor_th1-pi;
+
+figure;
+hold on;
+plot(t0_double,y0_double)
+plot(theta1.time(1:282),data_th1)
+legend('ode','real')
+title('Linear model vs real data')
+
+VAF_double = (1-(var(data_th1-y0_double))/(var(data_th1)))*100;
