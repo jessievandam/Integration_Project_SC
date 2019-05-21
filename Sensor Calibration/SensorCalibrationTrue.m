@@ -18,7 +18,7 @@ load('theta1_1_v3.mat'); th1m1.v3 = theta1.data;
 load('theta1_1_v4.mat'); th1m1.v4 = theta1.data;
 load('theta1_1_v5.mat'); th1m1.v5 = theta1.data;
 
-gain_th1_pi = pi/(mean2([th1m1.v2,th1m1.v3,th1m1.v4,th1m1.v5])-offset_th1);
+gain_th1_pi = -pi/(mean2([th1m1.v2,th1m1.v3,th1m1.v4,th1m1.v5])-offset_th1);
 
 %% Bias theta 2
 
