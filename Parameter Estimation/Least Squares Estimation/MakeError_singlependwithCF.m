@@ -1,7 +1,6 @@
 function error = MakeError_singlependwithCF(vec,par,data)
     I = vec(1);
     m = vec(2);
-    %g = vec(3);
     c2 = vec(3);
     b2 = vec(4);
     mu = vec(5);
