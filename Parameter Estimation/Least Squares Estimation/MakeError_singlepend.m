@@ -1,4 +1,4 @@
-function error = MakeError(vec,par,data)
+function error = MakeError_singlepend(vec,par,data)
     I = vec(1);
     m = vec(2);
     %g = vec(3);

@@ -12,7 +12,7 @@ lb = [0.00001;0.055;0.04;-Inf];
 ub = [0.0002;0.065;0.05;1];
 
 error = @(vec) MakeError(vec,par,data);
-par_min = lsqnonlin(error,vec_est,lb,ub);
+par_min_single = lsqnonlin(error,vec_est,lb,ub);
 
 %% Comparing model data to real data - double pendulum
 b2_est = 0.00009;
@@ -29,4 +29,4 @@ vec_est = [b1_est;b2_est];
 %ub = %[0.0002;0.065;0.05;1];
 
 error = @(vec) MakeError_nonlinmod(vec,matrcomp,data);
-par_min = lsqnonlin(error,vec_est);
+par_min_double = lsqnonlin(error,vec_est);
