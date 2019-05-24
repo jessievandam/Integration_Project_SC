@@ -70,7 +70,7 @@ data_sensor_th2 = data_sensor_th2(2600:end);
 
 data = [data_sensor_th1';data_sensor_th2'];
 
-t0_double = 0:.01:34.01;
+t0_double = 0:.01:30;
 
 nonlinmodel_double = @(t,theta) NonlinearModel_v2(t,theta,[input';zeros(size(input'))],par,par_min_double(1),par_min_double(2),par_min_double(3),par_min_single(1),par_min_double(4),par_min_single(2),par_min_double(5),par_min_single(3),par_min_double(6),par_min_single(4),par_min_double(7));
 [t_double,x_double] = ode45(nonlinmodel_double, [0 35], [data(1,1);data(2,1);(data(1,5)-data(1,1))/0.04;(data(2,5)-data(2,1))/0.04]);
@@ -81,7 +81,7 @@ y0_double = y0_double(:,1);
 figure;
 hold on;
 plot(t0_double,y0_double)
-plot(theta1.time(1:3402),data_sensor_th1)
+plot(theta1.time(1:3003),data_sensor_th1)
 legend('ode','real')
 title('Linear model vs real data')
 

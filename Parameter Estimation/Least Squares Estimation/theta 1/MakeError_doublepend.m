@@ -12,10 +12,10 @@ function [error,y0] = MakeError_doublepend(vec,par,par_min_single,data,input)
     c2 = par_min_single(3);
     b2 = par_min_single(4);
     
-    t0 = 0:.01:34.01; 
+    t0 = 0:.01:30; 
     nonlinmodel = @(t,theta) NonlinearModel_v2(t,theta,[input';zeros(size(input'))],par,l1,l2,I1,I2,m1,m2,c1,c2,b1,b2,km);
     
-    [t,y] = ode45(nonlinmodel,[0 35],[data(1,1);data(2,1);(data(1,5)-data(1,1));0.01770]);
+    [t,y] = ode45(nonlinmodel,[0 35],[data(1,1);data(2,1);(data(1,5)-data(1,1))/0.04;(data(2,5)-data(2,1))/0.04]);
     y0 = interp1(t,y,t0);
     y0 = y0(:,1);
     error = data(1,1) - y0;
