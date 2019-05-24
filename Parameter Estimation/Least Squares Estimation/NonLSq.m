@@ -86,12 +86,12 @@ load('LSQ_double_Chirpv2');
 data_sensor_th1 = theta1.Data;
 data_sensor_th2 = theta2.Data;
 input = Chirp.Data;
-%input = input(2600:end);
+input = input(2600:end);
 
 % filter measured sensor data, such that theta_1 makes half a circle from
 % pi to 0 and theta_2 from initial state 0 (model) and 0 (sensor)
-% data_sensor_th1 = data_sensor_th1(2600:end);
-% data_sensor_th2 = data_sensor_th2(2600:end);
+data_sensor_th1 = data_sensor_th1(2600:end);
+data_sensor_th2 = data_sensor_th2(2600:end);
 
 b2_est = 4.8;
 km_est = 50;
@@ -102,3 +102,23 @@ vec_est_double = [par.l1;par.l2;par.I1;par.m1;par.c1;b2_est;km_est];
 error_double = @(vec) MakeError_doublepend(vec,par,par_min_single,[data_sensor_th1';data_sensor_th2'],input);
 options = optimoptions(@lsqnonlin,'display','iter-detailed');
 par_min_double = lsqnonlin(error_double,vec_est_double,lb_double,ub_double,options);
+
+%% Comparing model data to real data - double pendulum, theta 1 only
+b1_est = 4.8;
+km_est = 50;
+run('dynrotpend.m');
+load('LSQ_th1_step_03');
+data_th1 = theta1.Data;
+data_th1 = data_th1(165:355);
+input = Chirp.Data;
+input = input(165:355);
+
+vec_est = [par.I1;par.m1;par.c1;b1_est;km_est];
+
+lb_th1 = [0.00001;0.055;0.04;0;0];
+ub_th1 = [0.0002;0.065;0.05;20;1000];
+
+error_th1 = @(vec) MakeError_th1(vec,par,data_th1,input);
+options = optimoptions(@lsqnonlin,'display','iter-detailed');
+par_min_th1 = lsqnonlin(error_th1,vec_est,lb_th1,ub_th1,options);
+

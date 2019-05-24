@@ -86,3 +86,24 @@ legend('ode','real')
 title('Linear model vs real data')
 
 VAF_double = (1-(var(data_sensor_th1-y0_double))/(var(data_sensor_th1)))*100;
+
+%% Simulate model for double pendulum, only theta 1
+t0 = 0:.01:(size(data_th1)-1)/100; 
+
+nonlinmodel = @(t,theta) nonlinmod(t,theta,0,par.I2,par.m2,par.g,par.c2,par_min_single_b2);
+[t_single_b2,x_single_b2] = ode45(nonlinmodel, [0 34], [-1/2*pi;0]);
+y0_b2 = interp1(t_single_b2,x_single_b2,t0);
+y0_b2 = y0_b2(:,1);
+load('Data_real_simplifiedv3');
+
+figure(1);
+hold on;
+plot(t0,y0_b2)
+plot(theta2.time(1:3372),-theta2.data(29:3400))
+legend('ode','real')
+title('Linear model vs real data')
+
+VAF_singlepend_b2 = (1-(var(-theta2.data(29:3400)-y0_b2))/(var(-theta2.data(29:3400))))*100;
+
+
+
