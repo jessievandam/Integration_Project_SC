@@ -118,7 +118,7 @@ vec_est = [par.I1;par.m1;par.c1;b1_est;km_est];
 lb_th1 = [0.00001;0.055;0.04;0;0];
 ub_th1 = [0.0002;0.065;0.05;20;1000];
 
-error_th1 = @(vec) MakeError_th1(vec,par,data_th1,input);
+error_th1 = @(vec) MakeError_th1(vec,par,data_th1);
 options = optimoptions(@lsqnonlin,'display','iter-detailed');
 par_min_th1 = lsqnonlin(error_th1,vec_est,lb_th1,ub_th1,options);
 
