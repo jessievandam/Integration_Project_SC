@@ -1,4 +1,4 @@
-function [dtheta, y] = NonlinearModel_v2(t,theta,u,par,l1,l2,I1,I2,m1,m2,c1,c2,b1,b2,varargin)
+function [dtheta, y] = NonlinearModel_v2(t,theta,u,par,l1,l2,I1,I2,m1,m2,c1,c2,b1,b2,km,varargin)
 
 P1 = m1*c1^2+m2*l1^2+I1;        % Linear kinetic energy component 1
 P2 = m2*c2^2 +I2;                       % Linear kinetic energy component 2
@@ -15,8 +15,7 @@ G = [-g1*sin(theta(1,1))-g2*sin(theta(1,1)+theta(2,1));
 
 dtheta(1,1) = theta(3,1);
 dtheta(2,1) = theta(4,1);
-dtheta(3:4,1) = pinv(M)*(-C*[theta(3,1);theta(4,1)]-G+u(1:2,1));
+dtheta(3:4,1) = pinv(M)*(-C*[theta(3,1);theta(4,1)]-G+km*u(1:2,1));
 
 y = theta(1,1);
-% y = theta(1,1);
 end

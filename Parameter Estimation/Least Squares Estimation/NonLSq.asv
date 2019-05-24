@@ -81,17 +81,15 @@ par_min_double = lsqnonlin(error,vec_est);
 
 %% Comparing model data to real data - double pendulum
 
-% load measured sensor data
-load('LSQ_double_Chirp');
+% load measured senspr data
+load('LSQ_double_03v2');
 data_sensor_th1 = theta1.Data;
 data_sensor_th2 = theta2.Data;
-input = Chirp.Data;
-input = input(2600:end);
 
 % filter measured sensor data, such that theta_1 makes half a circle from
 % pi to 0 and theta_2 from initial state 0 (model) and 0 (sensor)
-data_sensor_th1 = data_sensor_th1(2600:end);
-data_sensor_th2 = data_sensor_th2(2600:end);
+data_sensor_th1 = data_sensor_th1(1340:1621);
+data_sensor_th2 = data_sensor_th2(1340:1621);
 
 b2_est = 4.8;
 km_est = 50;
@@ -99,6 +97,5 @@ lb_double = [0.097;0.097;0.08;0.15;0.055;0;0];
 ub_double = [0.103;0.103;0.12;0.21;0.065;10;1000];
 vec_est_double = [par.l1;par.l2;par.I1;par.m1;par.c1;b2_est;km_est];
 
-error_double = @(vec) MakeError_doublepend(vec,par,par_min_single,[data_sensor_th1';data_sensor_th2'],input);
-options = optimoptions(@lsqnonlin,'display','iter-detailed');
-par_min_double = lsqnonlin(error_double,vec_est_double,lb_double,ub_double,options);
+error_double = @(vec) MakeError_doublepend(vec,par,par_min_single,data_th1);
+par_min_double = lsqnonlin(error_double,vec_est_double,lb_double,ub_double);

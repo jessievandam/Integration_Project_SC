@@ -65,7 +65,7 @@ VAF_singlepend_CF = (1-(var(-theta2.data(29:3400)-y0_CF))/(var(-theta2.data(29:3
 t0_double = 0:.01:1.91;
 
 nonlinmodel_double = @(t,theta) NonlinearModel_v2(t,theta,[0.3;0],par,par_min_double(1),par_min_double(2),par_min_double(3),par_min_single(1),par_min_double(4),par_min_single(2),par_min_double(5),par_min_single(3),par_min_double(6),par_min_single(4),par_min_double(7));
-[t_double,x_double] = ode45(nonlinmodel_double, [0 3], [3.1371;-0.1585;-0.02033;0.01770]);
+[t_double,x_double] = ode45(nonlinmodel_double, [0 3], [3.1371;-0.1585;-0.2033;0.1770]);
 y0_double = interp1(t_double,x_double,t0_double);
 y0_double = y0_double(:,1);
 load('LSQ_double_03v2');
@@ -79,4 +79,4 @@ plot(theta1.time(1:192),data_sensor_th1)
 legend('ode','real')
 title('Linear model vs real data')
 
-VAF_double = (1-(var(data_sensor_th1-y0_double))/(var(data_sensor_th1)))*100;
+VAF_double = (1-(var(data_th1-y0_double))/(var(data_th1)))*100;
