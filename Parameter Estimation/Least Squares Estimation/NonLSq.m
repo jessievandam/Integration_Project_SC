@@ -86,7 +86,7 @@ load('LSQ_double_Chirpv2');
 data_sensor_th1 = theta1.Data;
 data_sensor_th2 = theta2.Data;
 input = Chirp.Data;
-input = input(2600:end);
+input = input(2602:end);
 
 % filter measured sensor data, such that theta_1 makes half a circle from
 % pi to 0 and theta_2 from initial state 0 (model) and 0 (sensor)
