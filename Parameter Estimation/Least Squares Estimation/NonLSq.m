@@ -114,7 +114,7 @@ data_th1 = theta1.Data;
 input = Chirp.Data;
 input_time = Chirp.Time;
 % input = input';
-%input = input(165:355);
+% input = input(165:355);
 
 vec_est = [par.I1;par.m1;par.c1;b1_est;km_est];
 
