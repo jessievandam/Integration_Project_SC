@@ -107,5 +107,5 @@ title('Linear model vs real data')
 
 VAF_th1 = (1-(var(data_th1-y0_th1))/(var(data_th1)))*100;
 
-
+%%
 
