@@ -1,4 +1,4 @@
-function [error,y0] = error_th1(vec,theta_0,input,par,data)
+function [error,y0] = error_th1_rms(vec,theta_0,input,par,data)
 theta(1,:) = theta_0;
 
 for i = 1:length(data)-1
@@ -8,5 +8,5 @@ for i = 1:length(data)-1
     theta(i+1,:) = theta(i,:)+theta_gradient*par.Ts;
 end
 y0 = theta(:,1);
-error = data - y0;
+error = rms(data - y0);
 end
