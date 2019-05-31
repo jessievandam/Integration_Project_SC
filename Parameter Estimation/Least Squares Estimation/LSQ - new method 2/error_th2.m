@@ -8,5 +8,6 @@ for i = 1:length(data)-1
     theta(i+1,:) = theta(i,:)+theta_gradient*par.Ts;
 end
 y0 = theta(:,1);
-error = rms(data-y0);
+%error = rms(data-y0);
+error = data-y0;
 end
