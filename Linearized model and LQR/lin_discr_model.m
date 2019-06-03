@@ -63,5 +63,3 @@ P_eq1 = eig(A_eq1_d-B); % desired spectrum of the poles of matrix (A-KC)
 % K_eq1 = place(A_eq1_d',C_d',SP)';
 % K_eq2 = place(A_eq2_d',C_d',SP)';
 
-
-
