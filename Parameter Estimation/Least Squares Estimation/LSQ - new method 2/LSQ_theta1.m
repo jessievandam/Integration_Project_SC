@@ -1,4 +1,4 @@
-%% Theta 1, LSQ method Daan-Peppie
+%% Theta 1, LSQ with discrete model
 run('dynrotpend.m');
 par.Ts = 0.01;
 b1_est = 4.8;
@@ -6,7 +6,7 @@ km_est = 50;
 
 load('meas_th1_chirp04');
 startpoint = 1;
-endpoint = 2800;
+endpoint = 2900;
 data_th1 = -theta1.Data(startpoint:endpoint);
 data_th1_check = -theta1.Data;
 data_th1_check = data_th1_check-mean(data_th1_check);
@@ -83,8 +83,8 @@ opt = optimoptions('lsqnonlin');
 opt.Display = 'iter';
 opt.MaxFunctionEvaluations = 10^5;
 opt.MaxIterations = 10^5;
-opt.FunctionTolerance = 1*10^-18;
-opt.StepTolerance  = 1*10^-18;
+opt.FunctionTolerance = 1*10^-12;
+opt.StepTolerance  = 1*10^-12;
 
 error_th1_func = @(vec) error_th1(vec,theta_0,input,par,data_th1);
 

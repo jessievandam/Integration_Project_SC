@@ -1,4 +1,4 @@
-% construct nonlinear model
+ % construct nonlinear model
 b1_est = 4.8;      % damping of first joint  [kg/s]  
 b2_est = 0.00009;  % damping of second joint [kg/s]
 Order = [1 1 4];
