@@ -17,4 +17,15 @@ matrcomp.P3 = par.m2*par.l1*par.c2;                          % Linear kinetic en
 matrcomp.g1 = (par.m1*par.c1+par.m2*par.l1)*par.g;           % Gravity component 1
 matrcomp.g2 = par.m2*par.c2*par.g;                           % Gravity component 2
 
-%x = ode23(NonlinearModel(t,x,))
+%% Estimated parameters
+
+% Theta 2
+par.I2_est = 1.9912e-04;
+par.m2_est = 0.0550;
+par.c2_est = 0.04;
+par.b2_est = 2.4071e-05;
+par.I1_est = 0.0339;
+par.m1_est = 0.2861-par.m2_est;
+par.c1_est = 0.0715;
+par.b1_est = 1.3715;
+par.km_est = 5.7927;

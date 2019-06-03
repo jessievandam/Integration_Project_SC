@@ -9,8 +9,8 @@ km_est = 50;
 load('meas_double_square04');
 data_th1 = theta1.Data(1:500);
 data_th2 = theta2.Data(1:500);
-% data_th1 = data_th1 - mean(data_th1);
-% data_th2 = data_th2 - mean(data_th2);
+data_th1 = data_th1 - mean(data_th1);
+data_th2 = data_th2 - mean(data_th2);
 
 input = Input.Data;
 input_time = Input.Time;

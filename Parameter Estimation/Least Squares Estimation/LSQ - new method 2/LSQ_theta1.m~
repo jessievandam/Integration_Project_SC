@@ -6,7 +6,7 @@ km_est = 50;
 
 load('meas_th1_chirp04');
 startpoint = 1;
-endpoint = 2800;
+endpoint = 1000;
 data_th1 = -theta1.Data(startpoint:endpoint);
 data_th1_check = -theta1.Data;
 data_th1_check = data_th1_check-mean(data_th1_check);
@@ -24,18 +24,18 @@ theta_0 = [data_th1(1,1);(data_th1(5,1)-data_th1(1,1))/0.04];
 lb_th1 = [vec_est(1:3)*0.8;0;1];
 ub_th1 = [vec_est(1:3)*1.2;20;1000];
 
-opt_fmincon = optimoptions('fmincon');
+opt_fmincon = optimoptions('fminunc');
 opt_fmincon.Display = 'iter';
-opt_fmincon.MaxFunctionEvaluations = 10^5;
-opt_fmincon.MaxIterations = 10^5;
-opt_fmincon.FunctionTolerance = 1*10^-15;
-opt_fmincon.StepTolerance  = 1*10^-15;
-opt_fmincon.Algorithm = 'interior-point';
+opt_fmincon.MaxFunctionEvaluations = 10^3;
+% opt_fmincon.MaxIterations = 10^5;
+% opt_fmincon.FunctionTolerance = 1*10^-15;
+% opt_fmincon.StepTolerance  = 1*10^-15;
+opt_fmincon.Algorithm = 'quasi-newton';
 
 error_th1_rms_func = @(vec) error_th1_rms(vec,theta_0,input,par,data_th1);
-
-[par_min_th1,fval,exitflag] = fmincon(error_th1_rms_func,vec_est,[],[],[],[],lb_th1,ub_th1,[],opt_fmincon);
-
+% options = optimoptions(@lsqnonlin,'display','iter-detailed');
+% [par_min_th1,fval,exitflag] = fmincon(error_th1_rms_func,vec_est,[],[],[],[],lb_th1,ub_th1,[],opt_fmincon);
+[par_min_th1,fval,exitflag] = fminunc(error_th1_rms_func, vec_est,opt_fmincon);
 
 [~,y0] = error_th1_rms_func(par_min_th1);
 [~,y0_check] = error_th1_rms(par_min_th1,theta_0,input,par,data_th1_check);
