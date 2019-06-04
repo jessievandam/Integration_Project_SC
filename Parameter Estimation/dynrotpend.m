@@ -29,3 +29,9 @@ par.m1_est = 0.2861-par.m2_est;
 par.c1_est = 0.0715;
 par.b1_est = 1.3715;
 par.km_est = 5.7927;
+
+matrcomp.P1_est = par.m1_est*par.c1_est^2+par.m2_est*par.l1^2+par.I1;        % Linear kinetic energy component 1
+matrcomp.P2_est = par.m2_est*par.c2_est^2 +par.I2_est;                       % Linear kinetic energy component 2
+matrcomp.P3_est = par.m2_est*par.l1*par.c2_est;                          % Linear kinetic energy component 3
+matrcomp.g1_est = (par.m1_est*par.c1_est+par.m2_est*par.l1)*par.g;           % Gravity component 1
+matrcomp.g2_est = par.m2_est*par.c2_est*par.g;                           % Gravity component 2

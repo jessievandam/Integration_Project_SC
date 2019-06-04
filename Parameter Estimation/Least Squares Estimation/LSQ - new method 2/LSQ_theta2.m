@@ -6,7 +6,7 @@ load('Data_real_simplifiedv3');
 data_real = theta2.Data;
 data = -data_real;
 data_start = 29;
-data_end = 3700;
+data_end = 4000;
 time_end = data_start-data_end+1;
 data = data(data_start:data_end);
 data = data - mean(data);
