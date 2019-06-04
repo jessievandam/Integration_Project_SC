@@ -30,26 +30,31 @@ B = [0 0;
 C = [1 0 0 0;
     0 1 0 0];
 
+%% Discretization
+T = 0.01; % sample time
+
+[S1,J1] = jordan(A_eq1);
+A_eq1_d = S1*exp(J1*T)*inv(S1);
+A_eq1_d = real(A_eq1_d);
+
+[S2,J2] = jordan(A_eq2);
+A_eq2_d = S2*exp(J2*T)*inv(S2);
+A_eq2_d = real(A_eq2_d);
+
+B_eq1_d = inv(A_eq1)*(A_eq1_d-eye(4))*B;
+B_eq1_d = real(B_eq1_d);
+
+B_eq2_d = inv(A_eq2)*(A_eq2_d-eye(4))*B;
+B_eq2_d = real(B_eq2_d);
+
+C_d = C;
+
 %% LQR
 Q1 = diag([1 1 1 1]);
 Q2 = diag([1 1 1 1]);
 R1 = diag([1 1]);
 R2 = diag([1 1]);
 
-[K1,~,~] = lqr(A_eq1,B,Q1,R1); % optimal gain K1 for eq1
-[K2,~,~] = lqr(A_eq2,B,Q2,R2); % optimal gain K2 for eq2
+[K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1); % optimal gain K1 for eq1
+[K2,~,~] = lqr(A_eq2_d,B_eq2_d,Q2,R2); % optimal gain K2 for eq2
 
-%% Discretization
-T = 0.01; % sample time
-
-[S1,J1] = jordan(A_eq1);
-A_eq1_d = S1*exp(J1*T)*inv(S1);
-
-[S2,J2] = jordan(A_eq2);
-A_eq2_d = S2*exp(J2*T)*inv(S2);
-
-B_eq1_d = inv(A_eq1)*(A_eq1_d-eye(4))*B;
-
-B_eq2_d = inv(A_eq2)*(A_eq2_d-eye(4))*B;
-
-C_d = C;
