@@ -16,4 +16,8 @@ dim.nu = 2;                     % Number of inputs
 dim.N = 5;                      % Length receding horizon
 dim.t = length(par.tpred)-dim.N;
 
-weights.Q = diag([])
+weights.Q = diag([1 1 1]);
+weights.R = eye(dim.nu)/100;
+weight.P = zeros(dim.nx);
+
+%% Equilibrium point
