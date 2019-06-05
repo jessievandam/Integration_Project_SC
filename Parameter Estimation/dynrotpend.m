@@ -1,4 +1,6 @@
 %clear all; close all;
+
+%% Initial parameters
 % Specify parameters
 par.l1 = 0.1;       % Length of first link, m
 par.l2 = 0.1;       % Length of second link, m
@@ -17,18 +19,38 @@ matrcomp.P3 = par.m2*par.l1*par.c2;                          % Linear kinetic en
 matrcomp.g1 = (par.m1*par.c1+par.m2*par.l1)*par.g;           % Gravity component 1
 matrcomp.g2 = par.m2*par.c2*par.g;                           % Gravity component 2
 
-%% Estimated parameters
+%% Estimated parameters version 1
+% par.I2_est = 2e-4;
+% par.m2_est = 0.0552;
+% par.c2_est = 0.0438;
+% par.b2_est = 1.8206e-5;
+% par.I1_est = 0.0297;
+% par.m1_est = 0.2867-par.m2;
+% par.c1_est = 0.0717;
+% par.b1_est = 0.8031;
+% par.km_est = 5.0549;
 
-% Theta 2
-par.I2_est = 1.9912e-04;
-par.m2_est = 0.0550;
-par.c2_est = 0.04;
-par.b2_est = 2.4071e-05;
-par.I1_est = 0.0339;
-par.m1_est = 0.2861-par.m2_est;
-par.c1_est = 0.0715;
-par.b1_est = 1.3715;
-par.km_est = 5.7927;
+%% Estimated parameters version 2
+% par.I2_est = 1.8699e-4;
+% par.m2_est = 0.0553;
+% par.c2_est = 0.0400;
+% par.b2_est = 1.8088e-5;
+% par.I1_est = 0.0297;
+% par.m1_est = 0.2867-par.m2;
+% par.c1_est = 0.0717;
+% par.b1_est = 0.8031;
+% par.km_est = 5.0549;
+
+%% Estimated parameters version 3
+par.I2_est = 1.8364e-4;
+par.m2_est = 0.0551;
+par.c2_est = 0.0401;
+par.b2_est = 1.6576e-5;
+par.I1_est = 0.0297;
+par.m1_est = 0.2867-par.m2;
+par.c1_est = 0.0717;
+par.b1_est = 0.8031;
+par.km_est = 5.0549;
 
 matrcomp.P1_est = par.m1_est*par.c1_est^2+par.m2_est*par.l1^2+par.I1;        % Linear kinetic energy component 1
 matrcomp.P2_est = par.m2_est*par.c2_est^2 +par.I2_est;                       % Linear kinetic energy component 2
