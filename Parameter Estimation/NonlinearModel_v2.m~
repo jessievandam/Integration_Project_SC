@@ -16,7 +16,7 @@ for i = 1:length(u)
     
     dtheta(1,1) = theta(3,i);
     dtheta(2,1) = theta(4,i);
-    dtheta(3:4,1) = pinv(M)*(-C*[theta(3,i);theta(4,i)]-G+km*u);
+    dtheta(3:4,1) = pinv(M)*(-C*[theta(3,i);theta(4,i)]-G+km*[u(i,:)]);
     
     theta(:,i+1) = theta(:,i) + dtheta*par.Ts;
 end 

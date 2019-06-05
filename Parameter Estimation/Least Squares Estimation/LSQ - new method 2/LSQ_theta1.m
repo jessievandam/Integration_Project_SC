@@ -6,7 +6,7 @@ km_est = 50;
 
 load('meas_th1_chirp04');
 startpoint = 1;
-endpoint = 1500;
+endpoint = 2000;
 data_th1 = -theta1.Data(startpoint:endpoint);
 data_th1_check = -theta1.Data;
 data_th1_check = data_th1_check-mean(data_th1_check);
@@ -63,7 +63,7 @@ load('meas_th1_Chirp04');
 data_th1_check = -theta1.Data(1:end);
 data_th1_check = data_th1_check - mean(data_th1_check);
 startpoint = 1;
-endpoint = 1500;
+endpoint = 2000;
 data_th1 = -theta1.Data(startpoint:endpoint);
 data_th1 = data_th1 - mean(data_th1);
 time = theta1.time;

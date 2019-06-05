@@ -20,8 +20,8 @@ A_eq2 = [0 0 1 0;
         0 0 0 1;
         A_eq2_part];
     
-B_part = frac*[matrcomp.P2*par.km;
-         -par.km*(matrcomp.P2+matrcomp.P3)];
+B_part = frac*[-matrcomp.P2*par.km;
+         par.km*(matrcomp.P2+matrcomp.P3)];
      
 B = [0 0; 
     0 0; 
