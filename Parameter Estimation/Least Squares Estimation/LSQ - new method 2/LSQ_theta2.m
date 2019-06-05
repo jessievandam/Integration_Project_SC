@@ -6,7 +6,7 @@ load('Data_real_simplifiedv3');
 data_real = theta2.Data;
 data = -data_real;
 data_start = 29;
-data_end = 4000;
+data_end = 1500;
 time_end = data_start-data_end+1;
 data = data(data_start:data_end);
 data = data - mean(data);
@@ -51,7 +51,7 @@ legend('Estimated parameters','Data')
 hold off
 
 %% LSQ fmincon, initial model, other eq. point
-run('dynrotpend')
+% run('dynrotpend')
 b2_est = 0.00009;
 
 load('meas_th2_lefteq');
@@ -60,7 +60,7 @@ data = wrapToPi(data_real);
 datav2 = data-mean(data);
 %data = -data_real;
 data_start = 110;
-data_end = 3000;
+data_end = 1500;
 time_end = data_start-data_end+1;
 data = -datav2(data_start:data_end);
 %data = data - mean(data);
