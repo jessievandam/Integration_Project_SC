@@ -44,12 +44,37 @@ B_eq1_d = sysd1.B;
 C_eq1_d = sysd1.C;
 D_eq1_d = sysd1.D;
 
+
+%% LQR
+Q1 = diag([0.00001 1 1 1000]);%diag([20 15 0.5 0.5]); %diag([0.00001 1 1 1000]);
+% Q2 = diag([20 15 0.5 0.5]);
+R1 = diag([0.9 0 0.0001]);%diag([0.01 0.01 1]); %diag([0.9 0 0.0001]);
+% R2 = diag([1 1]);
+
+[K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1); % optimal gain K1 for eq1
+% [K2,~,~] = lqr(A_eq2_d,B_eq2_d,Q2,R2); % optimal gain K2 for eq2
+
+p1 = eig(A_eq1_d-B_eq1_d*K1);
+p1des = p1/3;
+L3 = place(A_eq1_d',C',p1des);
+L3 = L3';
+% L3 = [L3(1,:)' L3(3,:)'];
+% eigL3 = eig(A_eq1_d-L3*C_eq1_d);
+
 sys2 = ss(A_eq2,B,C,zeros(2));
 sysd2 = c2d(sys2,Ts);
 A_eq2_d = sysd2.A;
 B_eq2_d = sysd2.B;
 C_eq2_d = sysd2.C;
 D_eq2_d = sysd2.D;
+
+sys3 = ss(A_eq1,B,C,zeros(2));
+[sysd3,G] = c2d(sys3,Ts);
+A_eq1_d2 = sysd3.A;
+B_eq1_d2 = sysd3.B;
+C_eq1_d2 = sysd3.C;
+D_eq1_d2 = sysd3.D;
+% [A_eq1_d2,B_eq1_d2,C_eq1_d2,D_eq1_d2] = dlinmod('linmodel_eq1',Ts,[pi;0;0;0]);
 
 %% Luenberger Observer 
 L = 0.001*ones(4,4);
@@ -65,15 +90,7 @@ D_L = zeros(4,7);
 % eq = eig_obs == zeros(4,1);
 % sol = solve(eq);
 
-L2 = [1 1;0.01 0.01;0.01 0.01; 0.01 0.01];
+L2 = [0.1 0.1;0.01 0.01;0.01 0.01; 0.01 0.01];
 eig_obs = eig(A_eq1_d-L2*C_eq1_d);
 
-%% LQR
-Q1 = diag([1 1 0 0]);%diag([20 15 0.5 0.5]); %diag([0.00001 1 1 1000]);
-Q2 = diag([20 15 0.5 0.5]);
-R1 = diag([1 1 1]);%diag([0.01 0.01 1]); %diag([0.9 0 0.0001]);
-R2 = diag([1 1]);
-
-[K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1); % optimal gain K1 for eq1
-[K2,~,~] = lqr(A_eq2_d,B_eq2_d,Q2,R2); % optimal gain K2 for eq2
 
