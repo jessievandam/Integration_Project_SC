@@ -43,14 +43,18 @@ VAF_th1 = (1-var(data_th1-y0)/(var(data_th1)))*100;
 VAF_th1_check = (1-var(data_th1_check-y0_check)/(var(data_th1_check)))*100;
 
 figure; hold on
-plot(time(startpoint:endpoint), y0)
+plot(time(startpoint:endpoint), y0,'-.')
 plot(time(startpoint:endpoint),data_th1)
-legend('model','data')
+legend('Estimated parameters','Measured data')
+xlabel('time [sec]');
+ylabel('angle [rad]');
 
 figure; hold on
-plot(time,y0_check)
+plot(time,y0_check,'-.')
 plot(time,data_th1_check)
-legend('model','data')
+legend('Estimated parameters','Measured data')
+xlabel('time [sec]');
+ylabel('angle [rad]');
 
 %% Theta 1, lsqnonlin
 

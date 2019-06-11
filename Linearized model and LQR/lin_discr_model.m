@@ -33,7 +33,11 @@ C = [1 0 0 0;
 %% Discretization
 Ts = 0.01; % sample time
 
-sys1 = ss(A_eq1,B,C,zeros(2));
+x0_eq1 = -A_eq1*[pi;0;0;0];
+B_eq1 = [B x0_eq1];
+D_eq1 = zeros(2,3);
+
+sys1 = ss(A_eq1,B_eq1,C,D_eq1);
 sysd1 = c2d(sys1,Ts);
 A_eq1_d = sysd1.A;
 B_eq1_d = sysd1.B;
@@ -47,10 +51,17 @@ B_eq2_d = sysd2.B;
 C_eq2_d = sysd2.C;
 D_eq2_d = sysd2.D;
 
+%% Luenberger Observer
+L = 0.001*ones(4,4);
+B_L = [B_eq1_d L];
+C_L = diag([1,1,1,1]);
+A_L = A_eq1_d-L*C_L;
+D_L = zeros(4,7);
+
 %% LQR
-Q1 = diag([1 1 1 1]);
+Q1 = diag([0.00001 1 1 1000]);
 Q2 = diag([1 1 1 1]);
-R1 = diag([1 1]);
+R1 = diag([0.9 0 0.0001]);
 R2 = diag([1 1]);
 
 [K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1); % optimal gain K1 for eq1

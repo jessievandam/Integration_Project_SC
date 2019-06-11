@@ -93,15 +93,19 @@ data_check_othereq = -datav2(110:end);
 VAF_th2_fmincon_othereq_check = (1-var(data_check_othereq-y0_othereq_check)/(var(data_check_othereq)))*100;
 
 figure; hold on
-plot(time(data_start:data_end), y0_v2_othereq)
+plot(time(data_start:data_end), y0_v2_othereq,'-.')
 plot(time(data_start:data_end),data)
-legend('Estimated parameters','Data')
+legend('Estimated parameters','Measured data')
+xlabel('time [sec]');
+ylabel('angle [rad]');
 hold off
 
 figure; hold on
-plot(time,y0_othereq_check)
+plot(time,y0_othereq_check,'-.')
 plot(time,data_check_othereq)
-legend('Estimated parameters','Data')
+legend('Estimated parameters','Measured data')
+xlabel('time [sec]');
+ylabel('angle [rad]');
 hold off
 
 
