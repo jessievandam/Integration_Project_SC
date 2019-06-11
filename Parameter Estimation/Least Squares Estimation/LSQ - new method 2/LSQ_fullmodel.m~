@@ -51,7 +51,7 @@ data_th1_discr = theta1.data(time_start:time_end);
 data_th2_discr = theta2.data(time_start:time_end);
 data_time_discr = theta1.time(time_start:time_end);
 
-input_discr = -Input.data;
+input_discr = Input.data;
 input_time_discr = Input.time;
 
 vec_est = [par.I1;par.I2;par.m1;par.m2;par.c1;par.c2;par.l1;b1_est;b2_est;km_est];
