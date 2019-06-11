@@ -1,8 +1,8 @@
 %% Main MPC file
-
-clear all
-clc
-close all
+% 
+% clear all
+% clc
+% close all
 
 % %% Define parameters/dataset
 % 
@@ -64,8 +64,12 @@ D_eq1_d = sysd1.D;
 
 %% Specify MPC object
 
-[A,B,C,D] = dlinmod('NonlinearModelSimulink_2018a',0.01,[pi;0;0;0]);
-
+[A,B,C,D] = dlinmod('NonlinearModelSimulink_2016b',0.01,[pi;0;0;0]);
+% A = [0.9999 3.3602e-05 0.0076 8.2770e-07;
+%     -0.0054 0.9942 0.0051 0.0099;
+%     -0.0269 0.0061 0.5630 1.6278e-04;
+%     -1.0767 -1.1477 0.9331 0.9811];
+% B = [0.0155; -0.0335; 2.8340;-6.0888];
 C = [1 0 0 0;
     0 1 0 0];
 D = [0; 0];
