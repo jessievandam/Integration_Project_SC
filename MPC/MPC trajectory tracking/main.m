@@ -21,7 +21,7 @@ weight.P=zeros(dim.nx);
 
 Xref=reftrajgen(param,dim);
 Uref=refinputgen(Xref,param,dim);
-% 
+ 
 %% Compute the linearized prediction model and quadratic costs
 
 LTV=computeLTV(Xref,Uref,param,dim);
@@ -44,9 +44,6 @@ for k=1:dim.t
     uB(k,:)=uBopt(1:dim.nu)';
     e(k+1,:)=LTV.Ad(:,:,k)*e(k,:)'+LTV.Bd(:,:,k)*uB(k,:)';
 end
-
-
-%%
 
 
 %% Simulation for the real system

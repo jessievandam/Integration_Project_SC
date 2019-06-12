@@ -1,28 +1,29 @@
 %% Main MPC file
 % 
-% clear all
-% clc
-% close all
+clear all
+clc
+close all
 
-% %% Define parameters/dataset
-% 
-% par.Ts = 0.01;                  % Sampling time
-% par.Tf = 10;                    % Final time
-% par.tpred = 0:par.Ts:par.Tf;    % Time for generation of prediction model
-% par.theta0 = zeros(4,1);        % Initial conditions
-% 
-% dim.nx = 4;                     % Number of states
-% dim.nu = 2;                     % Number of inputs
-% dim.N = 5;                      % Length receding horizon
-% dim.t = length(par.tpred)-dim.N;
-% 
-% weights.Q = diag([1 1 1]);
-% weights.R = eye(dim.nu)/100;
-% weight.P = zeros(dim.nx);
+%% Define parameters/dataset
+run('dynrotpend')
+par.Ts = 0.01;                  % Sampling time
+par.Tf = 10;                    % Final time
+par.tpred = 0:par.Ts:par.Tf;    % Time for generation of prediction model
+par.theta0 = zeros(4,1);        % Initial conditions
 
-%% Equilibrium point
+dim.nx = 4;                     % Number of states
+dim.nu = 2;                     % Number of inputs
+dim.N = 5;                      % Length receding horizon
+dim.t = length(par.tpred)-dim.N;
 
-%% Linearized state space model
+weights.Q = diag([1 1 1]);
+weights.R = eye(dim.nu)/100;
+weight.P = zeros(dim.nx);
+
+Xref = reftrajectory(par,dim);
+Uref = refinput(Xref,par, dim);
+
+%% Linearized state space model, equilibrium point 1
 run('dynrotpend')
 par.b1 = par.b1_est;
 par.b2 = par.b2_est;
@@ -61,6 +62,14 @@ A_eq1_d = sysd1.A;
 B_eq1_d = sysd1.B;
 C_eq1_d = sysd1.C;
 D_eq1_d = sysd1.D;
+
+for i = 1:size(Xref,1)
+    A(:,:,i) = sysd1.A;
+    B(:,:,i) = sysd1.B;
+end
+
+%% Compute prediction model and quadratic costs
+prediction = predmodel(sysd1,dim);
 
 %% Specify MPC object
 
