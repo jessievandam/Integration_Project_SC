@@ -50,14 +50,12 @@ D_eq1_d2_val = D_eq1_d_val(:,1);
 xref = B_eq1_d_val(:,3);
 
 % Controller models
-sys1 = ss(A_eq1,B,C,zeros(2));
+sys1 = ss(A_eq1,B(:,1),C,zeros(2,1));
 sysd1 = c2d(sys1,Ts);
 A_eq1_d = sysd1.A;
 B_eq1_d = sysd1.B;
 C_eq1_d = sysd1.C;
 D_eq1_d = sysd1.D;
-B_eq1_d = B_eq1_d(:,1);
-D_eq1_d = D_eq1_d(:,1);
 
 sys2 = ss(A_eq2,B,C,zeros(2));
 sysd2 = c2d(sys2,Ts);
