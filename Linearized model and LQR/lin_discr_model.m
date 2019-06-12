@@ -44,6 +44,10 @@ B_eq1_d = sysd1.B;
 C_eq1_d = sysd1.C;
 D_eq1_d = sysd1.D;
 
+B_eq1_d2 = B_eq1_d(:,1);
+D_eq1_d2 = D_eq1_d(:,1);
+xref = B_eq1_d(:,3);
+
 sys2 = ss(A_eq2,B,C,zeros(2));
 sysd2 = c2d(sys2,Ts);
 A_eq2_d = sysd2.A;
@@ -51,14 +55,12 @@ B_eq2_d = sysd2.B;
 C_eq2_d = sysd2.C;
 D_eq2_d = sysd2.D;
 
-sys3 = ss(A_eq1,B,C,zeros(2));
-[sysd3,G] = c2d(sys3,Ts);
-A_eq1_d2 = sysd3.A;
-B_eq1_d2 = sysd3.B;
-C_eq1_d2 = sysd3.C;
-D_eq1_d2 = sysd3.D;
-
-
+% sys3 = ss(A_eq1,B,C,zeros(2));
+% [sysd3,G] = c2d(sys3,Ts);
+% A_eq1_d2 = sysd3.A;
+% B_eq1_d2 = sysd3.B;
+% C_eq1_d2 = sysd3.C;
+% D_eq1_d2 = sysd3.D;
 
 %% LQR Controller K
 Q1 = diag([0.00001 1 1 1000]);%diag([20 15 0.5 0.5]); %diag([0.00001 1 1 1000]);
