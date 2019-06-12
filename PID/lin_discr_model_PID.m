@@ -66,28 +66,11 @@ B_eq2_d = sysd2.B;
 C_eq2_d = sysd2.C;
 D_eq2_d = sysd2.D;
 
-%% Luenberger Observer Validation
-p_val = pole(ss(A_eq1_d_val,B_eq1_d2_val,C_eq1_d_val,D_eq1_d2_val));
-pdes_val = p_val/3;
-L_val = place(A_eq1_d',C_eq1_d',pdes_val)';
-eig_obs_val = eig(A_eq1_d_val-L_val*C_eq1_d_val);
-
-%% Luenberger Observer Controller
-p = pole(ss(A_eq1_d,B_eq1_d,C_eq1_d,D_eq1_d));
-pdes = p/3;
-L = place(A_eq1_d',C_eq1_d',pdes)';
-eig_obs = eig(A_eq1_d-L*C_eq1_d);
-
-%% LQR Controller K
-Q1 = diag([600 300 0 0]);
-R1 = 0.001;
-[K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1);  % optimal gain K1 for eq1
-[K12,~,~] = lqr(sysd1,Q1,R1);
-K122 = K12(1,:);
-
-% Q2 = diag([20 15 0.5 0.5]);
-% R2 = diag([1 1]);
-% [K2,~,~] = lqr(A_eq2_d,B_eq2_d,Q2,R2); % optimal gain K2 for eq2
-
+%% PID Controller
+Kp = 0; % proportional gain
+Ki = 0; % integral gain
+Kd = 0; % derivative gain
+Tf = 0; % time constant of the first-order derivative filter.
+K_PID = pid(Kp,Ki,Kd,Tf);
 
 
