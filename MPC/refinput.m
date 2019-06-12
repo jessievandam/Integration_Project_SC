@@ -6,8 +6,8 @@ theta1 = Xref(:,1);
 theta2 = Xref(:,2);
 dtheta1 = Xref(:,3);
 dtheta2 = Xref(:,4);
-ddtheta1 = 0;
-ddtheta2 = 0;
+ddtheta1 = zeros(size(Xref,1),1);
+ddtheta2 = zeros(size(Xref,1),1);
 
 for i = 1:size(Xref,1)
     u = 1/par.km_est*(ddtheta1(i)*(par.m1*par.c1^2+par.m2*par.l1^2+par.I1...

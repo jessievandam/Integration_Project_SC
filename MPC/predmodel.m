@@ -1,9 +1,4 @@
-function predmod = predmodel(sysd,dim)
-
-A = sysd.A;
-B = sysd.B;
-C = sysd.C;
-D = sysd.C;
+function predmod = predmodel(A,B,dim)
 
 %% Prediction matrices generation
 
