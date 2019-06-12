@@ -79,9 +79,11 @@ L = place(A_eq1_d',C_eq1_d',pdes)';
 eig_obs = eig(A_eq1_d-L*C_eq1_d);
 
 %% LQR Controller K
-Q1 = diag([0.4 0.3 0 0]);
-R1 = 0.01;
+Q1 = diag([600 300 0 0]);
+R1 = 0.001;
 [K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1);  % optimal gain K1 for eq1
+[K12,~,~] = lqr(sysd1,Q1,R1);
+K122 = K12(1,:);
 
 % Q2 = diag([20 15 0.5 0.5]);
 % R2 = diag([1 1]);

@@ -52,10 +52,10 @@ xref = B_eq1_d_val(:,3);
 % Controller models
 sys1 = ss(A_eq1,B,C,zeros(2));
 sysd1 = c2d(sys1,Ts);
-A_eq1_d = sysd3.A;
-B_eq1_d = sysd3.B;
-C_eq1_d = sysd3.C;
-D_eq1_d = sysd3.D;
+A_eq1_d = sysd1.A;
+B_eq1_d = sysd1.B;
+C_eq1_d = sysd1.C;
+D_eq1_d = sysd1.D;
 B_eq1_d = B_eq1_d(:,1);
 D_eq1_d = D_eq1_d(:,1);
 
@@ -70,7 +70,7 @@ D_eq2_d = sysd2.D;
 p_val = pole(ss(A_eq1_d_val,B_eq1_d2_val,C_eq1_d_val,D_eq1_d2_val));
 pdes_val = p_val/3;
 L_val = place(A_eq1_d',C_eq1_d',pdes_val)';
-eig_obs = eig(A_eq1_d_val-L_val*C_eq1_d_val);
+eig_obs_val = eig(A_eq1_d_val-L_val*C_eq1_d_val);
 
 %% Luenberger Observer Controller
 p = pole(ss(A_eq1_d,B_eq1_d,C_eq1_d,D_eq1_d));
@@ -79,9 +79,11 @@ L = place(A_eq1_d',C_eq1_d',pdes)';
 eig_obs = eig(A_eq1_d-L*C_eq1_d);
 
 %% LQR Controller K
-Q1 = diag([0.4 0.3 0.05 0.05]);%diag([20 15 0.5 0.5]); %diag([0.00001 1 1 1000]);
-R1 = 0.01;
+Q1 = diag([600 300 0 0]);
+R1 = 0.001;
 [K1,~,~] = lqr(A_eq1_d,B_eq1_d,Q1,R1);  % optimal gain K1 for eq1
+[K12,~,~] = lqr(sysd1,Q1,R1);
+K122 = K12(1,:);
 
 % Q2 = diag([20 15 0.5 0.5]);
 % R2 = diag([1 1]);
