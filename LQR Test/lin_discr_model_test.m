@@ -125,25 +125,25 @@ C_eq4_d_n = sysd4_n.C;
 % DOWN DOWN
 Q1 = diag([0.2 0.4 0 0]); 
 R1 = 1; 
-
 [K1,~,~] = dlqr(A_eq1_d,B_eq1_d,Q1,R1,zeros(4,1));
-[K1_2,~,~] = lqr(sysd1,Q1,R1);
-[K1_3,~,~] = lqr(sysd1_n,Q1,R1);
+
+Q1_2 = diag([0.2 0.4 0 0 1 1]); 
+R1_2 = 1; 
+[K1_2,~,~] = lqi(sysd1_n, Q1_2, R1_2);
+K1_lq = K1_2(1,1:4);
+Ki = K1_2(1,5:6);
 
 % UP UP
-Q2 = diag([0.2 0.4 0 0]); 
+Q2 = diag([200 1 1 0.1]); 
 R2 = 1; 
-
 [K2,~,~] = dlqr(A_eq2_d,B_eq2_d,Q2,R2,zeros(4,1));
 
 % UP DOWN
 Q3 = diag([0.2 0.6 1 1]); 
 R3 = 10000; 
-
 [K3,~,~] = dlqr(A_eq3_d,B_eq3_d,Q3,R3,zeros(4,1));
 
 % DOWN UP
 Q4 = diag([0.02 0.04 0 0]); 
 R4 = 1000; 
-
 [K4,~,~] = dlqr(A_eq4_d,B_eq4_d,Q4,R4,zeros(4,1));
