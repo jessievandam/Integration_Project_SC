@@ -1,11 +1,12 @@
 %% Main MPC file
 % 
-clear all
-clc
-close all
+% clear all
+% clc
+% close all
 
 %% Define parameters/dataset
 run('dynrotpend')
+h = 0.01;
 par.Ts = 0.01;                  % Sampling time
 par.Tf = 50;                    % Final time
 par.tpred = 0:par.Ts:par.Tf;    % Time for generation of prediction model
