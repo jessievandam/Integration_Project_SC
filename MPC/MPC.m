@@ -85,7 +85,7 @@ for k=1:dim.t
 end
 
 
-plot(e)
+%plot(e)
 legend('theta1','theta2','dtheta1','dtheta2')
 
 % %% Specify MPC object
