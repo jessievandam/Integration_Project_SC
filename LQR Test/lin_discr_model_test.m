@@ -55,7 +55,7 @@ C_eq3 = C_eq1;
 
 % equilibrium 4: [pi;pi;0;0] DOWN UP
 A_eq4_part = frac2*[matrcomp.g1*matrcomp.P2-matrcomp.g2*matrcomp.P3 -matrcomp.g2*matrcomp.P3 par.b1*matrcomp.P2 par.b2*(-matrcomp.P2+matrcomp.P3);
-             matrcomp.g1*(-matrcomp.P2+matrcomp.P3)-matrcomp.g2*(matrcomp.P1-matrcomp.P3) matrcomp.g2*(matrcomp.P1+matrcomp.P3) par.b1*(-matrcomp.P2+matrcomp.P3) par.b2*(matrcomp.P1+matrcomp.P2-2*matrcomp.P3)];
+             matrcomp.g1*(-matrcomp.P2+matrcomp.P3)-matrcomp.g2*(matrcomp.P1-matrcomp.P3) matrcomp.g2*(matrcomp.P1-matrcomp.P3) par.b1*(-matrcomp.P2+matrcomp.P3) par.b2*(matrcomp.P1+matrcomp.P2-2*matrcomp.P3)];
     
 A_eq4 = [0 0 1 0;
         0 0 0 1;
@@ -139,9 +139,15 @@ R2 = 1;
 [K2,~,~] = dlqr(A_eq2_d,B_eq2_d,Q2,R2,zeros(4,1));
 
 % UP DOWN
-Q3 = diag([2 6 .1 .1]); 
-R3 = 100; 
+Q3 = diag([0.2 0.8 .01 .01]); 
+R3 = 1000; 
 [K3,~,~] = dlqr(A_eq3_d,B_eq3_d,Q3,R3,zeros(4,1));
+
+Q3_2 = diag([0.2 0.8 0 0 0.1 0.1]); 
+R3_2 = 1000; 
+[K3_2,~,~] = lqi(sysd3_n, Q3_2, R3_2);
+K3_lq = K3_2(1,1:4);
+Ki3 = K3_2(1,5:6);
 
 % DOWN UP
 Q4 = diag([0.02 0.04 0 0]); 
