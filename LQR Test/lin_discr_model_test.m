@@ -139,8 +139,8 @@ R2 = 1;
 [K2,~,~] = dlqr(A_eq2_d,B_eq2_d,Q2,R2,zeros(4,1));
 
 % UP DOWN
-Q3 = diag([0.2 0.6 1 1]); 
-R3 = 10000; 
+Q3 = diag([2 6 .1 .1]); 
+R3 = 100; 
 [K3,~,~] = dlqr(A_eq3_d,B_eq3_d,Q3,R3,zeros(4,1));
 
 % DOWN UP
