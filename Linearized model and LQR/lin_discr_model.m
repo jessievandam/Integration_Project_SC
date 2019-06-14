@@ -87,5 +87,3 @@ K122 = K12(1,:);
 % R2 = diag([1 1]);
 % [K2,~,~] = lqr(A_eq2_d,B_eq2_d,Q2,R2); % optimal gain K2 for eq2
 
-
-
