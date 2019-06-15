@@ -20,18 +20,32 @@ matrcomp.g1 = (par.m1*par.c1+par.m2*par.l1)*par.g;           % Gravity component
 matrcomp.g2 = par.m2*par.c2*par.g;                           % Gravity component 2
 
 %% Estimated parameters double pendulum model
-par.l1_est = 0.09028;       % Length of first link, m
+% par.l1_est = 0.09028;       % Length of first link, m
+% par.l2_est = 0.1;       % Length of second link, m
+% par.m1_est = 0.2160;      % Mass of first link, kg
+% par.m2_est = 0.0720;      % Mass of second link, kg
+% par.c1_est = 0.0720;      % Center of mass of first link, m
+% par.c2_est = 0.0470;     % Center of mass of second link, m
+% par.I1_est = 0.0296;        % Inertia of first link, kg*m^2
+% par.I2_est = 8.800e-05;     % Inertia of second link, kg*m^2
+% par.g = 9.81;               % Gravitational acceleration, m/s^2
+% par.b1_est = 2.1787;        % Damping first link
+% par.b2_est = 0.0003001;     % Damping second link
+% par.km_est = 14.1350;       % Motor gain
+
+%% Estimated parameters double pendulum model v2
+par.l1_est = 0.0804329891286808;       % Length of first link, m
 par.l2_est = 0.1;       % Length of second link, m
-par.m1_est = 0.2160;      % Mass of first link, kg
-par.m2_est = 0.0720;      % Mass of second link, kg
-par.c1_est = 0.0720;      % Center of mass of first link, m
-par.c2_est = 0.0470;     % Center of mass of second link, m
-par.I1_est = 0.0296;        % Inertia of first link, kg*m^2
-par.I2_est = 8.800e-05;     % Inertia of second link, kg*m^2
+par.m1_est = 0.272545246546885;      % Mass of first link, kg
+par.m2_est = 0.0667262455373871;      % Mass of second link, kg
+par.c1_est = 0.0863993339162106;      % Center of mass of first link, m
+par.c2_est = 0.0475304258444246;     % Center of mass of second link, m
+par.I1_est =0.0272110717366075;        % Inertia of first link, kg*m^2
+par.I2_est = 0.000150255519626927;     % Inertia of second link, kg*m^2
 par.g = 9.81;               % Gravitational acceleration, m/s^2
-par.b1_est = 2.1787;        % Damping first link
-par.b2_est = 0.0003001;     % Damping second link
-par.km_est = 14.1350;       % Motor gain
+par.b1_est = 2.98458901393556;        % Damping first link
+par.b2_est = 0.000292060429803985;     % Damping second link
+par.km_est = 19.5658285816876;       % Motor gain
 
 
 % Specify matrices
