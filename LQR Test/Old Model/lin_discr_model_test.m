@@ -127,12 +127,6 @@ Q1 = diag([0.2 0.4 0 0]);
 R1 = 1; 
 [K1,~,~] = dlqr(A_eq1_d,B_eq1_d,Q1,R1,zeros(4,1));
 
-% Q1_2 = diag([0.2 0.4 0 0 0 0]); 
-% R1_2 = 1; 
-% [K1_2,~,~] = lqi(sysd1_n, Q1_2, R1_2);
-% K1_lq = K1_2(1,1:4);
-% Ki = K1_2(1,5:6);
-
 % UP UP
 Q2 = diag([200 1 1 0.1]); 
 R2 = 1; 
@@ -143,13 +137,37 @@ Q3 = diag([0.2 0.8 .01 .01]);
 R3 = 1000; 
 [K3,~,~] = dlqr(A_eq3_d,B_eq3_d,Q3,R3,zeros(4,1));
 
-% Q3_2 = diag([0.2 0.8 0 0 0.1 0.1]); 
-% R3_2 = 1000; 
-% [K3_2,~,~] = lqi(sysd3_n, Q3_2, R3_2);
-% K3_lq = K3_2(1,1:4);
-% Ki3 = K3_2(1,5:6);
-
 % DOWN UP
 Q4 = diag([0.02 0.04 0 0]); 
 R4 = 1000; 
 [K4,~,~] = dlqr(A_eq4_d,B_eq4_d,Q4,R4,zeros(4,1));
+
+%% LQI Controllers Klq and Ki
+
+% DOWN DOWN
+Q1_lqi = diag([0.2 0.4 0 0 0.1 0.1]); 
+R1_lqi = 1; 
+[K1_lqi,~,~] = lqi(sysd1_n, Q1_lqi, R1_lqi, zeros(6,1));
+K1_lq = K1_lqi(1,1:4);
+K1_i = K1_lqi(1,5:6);
+
+% UP UP
+Q2_lqi = diag([2 1 1 0.1 1 1]); 
+R2_lqi = 1; 
+[K2_lqi,~,~] = lqi(sysd2_n, Q2_lqi, R2_lqi, zeros(6,1));
+K2_lq = K2_lqi(1,1:4);
+K2_i = K2_lqi(1,5:6);
+
+% UP DOWN
+Q3_lqi = diag([2 1 0 0 0.1 0.1]); 
+R3_lqi = 0.1; 
+[K3_lqi,~,~] = lqi(sysd3_n, Q3_lqi, R3_lqi, zeros(6,1));
+K3_lq = K3_lqi(1,1:4);
+K3_i = K3_lqi(1,5:6);
+
+% DOWN UP
+Q4_lqi = diag([2 1 0 0 0.1 0.1]); 
+R4_lqi = 0.1; 
+[K4_lqi,~,~] = lqi(sysd4_n, Q4_lqi, R4_lqi, zeros(6,1));
+K4_lq = K4_lqi(1,1:4);
+K4_i = K4_lqi(1,5:6);
