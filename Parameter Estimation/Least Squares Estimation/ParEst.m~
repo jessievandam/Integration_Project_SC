@@ -14,7 +14,7 @@ data = wrapToPi(data_real);
 datav2 = data-mean(data);
 
 data_start_th2 = 110;                       
-data_end_th2 = 1500+data_start_th2-1;
+data_end_th2 = 1500;
 time_end = data_start_th2-data_end_th2+1;
 data = -datav2(data_start_th2:data_end_th2);
 
@@ -112,18 +112,12 @@ VAF_th1_check = (1-var(data_th1_check-y0_th1_check)/(var(data_th1_check)))*100;
 figure; hold on
 plot(time(data_start_th1:data_end_th1), y0_th1, '-.')
 plot(time(data_start_th1:data_end_th1),data_th1)
-legend('Estimated parameters','Measured data')
-xlabel('time [sec]');
-ylabel('angle [rad]');
-hold off
+legend('model','data')
 
 figure; hold on
 plot(time, (y0_th1_check-mean(y0_th1_check)), '-.')
 plot(time,data_th1_check)
-legend('Estimated parameters','Measured data')
-xlabel('time [sec]');
-ylabel('angle [rad]');
-hold off
+legend('model','data')
 
 %% Full model
 
@@ -147,36 +141,28 @@ opt = optimoptions('lsqnonlin');
 opt.Display = 'iter';
 opt.MaxFunctionEvaluations = 10^5;
 opt.MaxIterations = 10^5;
-opt.FunctionTolerance = 1*10^-15;
-opt.StepTolerance  = 1*10^-15;
+opt.FunctionTolerance = 1*10^-11;
+opt.StepTolerance  = 1*10^-11;
 
 error_doublepend = @(vec) error_doublepend_discr(vec,theta_0,input_discr,par,data_th1_discr,data_th2_discr);
 
 [par_min_doublepend_discr,fval,~,exitflag] = lsqnonlin(error_doublepend,vec_est,lb,ub,opt);
 
 [~,y0_th1_doublepend_discr,y0_th2_doublepend_discr] = error_doublepend(par_min_doublepend_discr);
-[~,y0_th1_vec_est,y0_th2_vec_est] = error_doublepend([par_min_th1(1);par_min_th2(1);(par_min_th1(2)-par_min_th2(2));par_min_th2(2);par_min_th1(3);par_min_th2(3);par.l1_est;par_min_th1(4);par_min_th2(4);par_min_th1(5)]);
+[~,y0_th1_vec_est,y0]
 
 %% Make plots
 
 figure; hold on 
 plot(y0_th1_doublepend_discr,'-.')
 plot(data_th1_discr)
-legend('Estimated parameters','Measured data')
-xlabel('time [sec]');
-ylabel('angle [rad]');
-hold off
+legend('Estimated','True')
 
 figure; hold on
 plot(y0_th2_doublepend_discr,'-.')
 plot(data_th2_discr)
-legend('Estimated parameters','Measured data')
-xlabel('time [sec]');
-ylabel('angle [rad]');
-hold off
+legend('Estimated','True')
 
 %% Calculate VAF
 VAF_th1_doublepend_discr = (1-var(data_th1_discr-y0_th1_doublepend_discr)/(var(data_th1_discr)))*100;
-VAF_th1_doublepend_initial = (1-var(data_th1_discr-y0_th1_vec_est)/(var(data_th1_discr)))*100;
 VAF_th2_doublepend_discr = (1-var(data_th2_discr-y0_th2_doublepend_discr)/(var(data_th2_discr)))*100;
-VAF_th2_doublepend_inital = (1-var(data_th2_discr-y0_th2_vec_est)/(var(data_th2_discr)))*100;

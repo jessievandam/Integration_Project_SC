@@ -5,7 +5,7 @@ clear all; close all; clc
 %% Validation measurement 1, square wave, right equilibrium
 
 load('Square_03_right_validation')
-load('Square_03_sim_validationv3')
+load('Square_03_sim_validationv4')
 
 data_square_03_th1 = theta1.data(203:end);
 data_square_03_th2 = theta2.data(203:end);
@@ -29,7 +29,7 @@ VAF_square_03_th2 = (1-var(data_square_03_th2-y0_square_03_th2)/(var(data_square
 %% Validation measurement 2, sine wave, right equilibrium
 
 load('Sine_03_right_validation')
-load('Sine_03_sim_validationv3')
+load('Sine_03_sim_validation')
 
 start_sine_03 = 1;
 data_sine_03_th1 = theta1.data(start_sine_03:end);
@@ -54,9 +54,7 @@ VAF_sine_03_th2 = (1-var(data_sine_03_th2-y0_sine_03_th2)/(var(data_sine_03_th2)
 %% Validation measurement 3, sawtooth, right equilibrium
 
 load('Sawtooth_03_right_validation')
-% load('Sawtooth_03_sim_validation')
-%load('Sawtooth_03_sim_validationv2')
-load('Sawtooth_03_sim_validationv3')
+load('Sawtooth_03_sim_validationv4')
 
 start_sawtooth_03 = 1;
 data_sawtooth_03_th1 = theta1.data(start_sawtooth_03:end);
