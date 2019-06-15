@@ -47,6 +47,20 @@ par.b1_est = 2.98458901393556;        % Damping first link
 par.b2_est = 0.000292060429803985;     % Damping second link
 par.km_est = 19.5658285816876;       % Motor gain
 
+%% Estimated parameters double pendulum model v3
+par.l1_est = 0.0804294093946102;       % Length of first link, m
+par.l2_est = 0.1;       % Length of second link, m
+par.m1_est = 0.272549112582789;      % Mass of first link, kg
+par.m2_est = 0.0667528776558266;      % Mass of second link, kg
+par.c1_est = 0.0863567426488841;      % Center of mass of first link, m
+par.c2_est = 0.0475362943514164;     % Center of mass of second link, m
+par.I1_est = 0.0272000365896942;        % Inertia of first link, kg*m^2
+par.I2_est = 0.000150352582581866;     % Inertia of second link, kg*m^2
+par.g = 9.81;               % Gravitational acceleration, m/s^2
+par.b1_est = 2.98357229434069;        % Damping first link
+par.b2_est = 0.000292377958001476;     % Damping second link
+par.km_est = 19.5593682174979;       % Motor gain
+
 
 % Specify matrices
 matrcomp.P1_est = par.m1*par.c1^2+par.m2*par.l1^2+par.I1;        % Linear kinetic energy component 1
