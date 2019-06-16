@@ -33,11 +33,11 @@ sysd3 = ss(linmat.A3,linmat.B3,C_new,linmat.D3,Ts);
 sysd4 = ss(linmat.A4,linmat.B4,C_new,linmat.D4,Ts);
 
 % DOWN DOWN
-Q1_lqi = diag([2 1 1 0.1 1 1]); 
-R1_lqi = 1; 
-[K1_lqi,~,~] = lqi(sysd1, Q1_lqi, R1_lqi, zeros(6,1));
-K1_lq = K1_lqi(1,1:4);
-K1_i = K1_lqi(1,5:6);
+% Q1_lqi = diag([2 1 1 0.1 1 1]); 
+% R1_lqi = 1; 
+% [K1_lqi,~,~] = lqi(sysd1, Q1_lqi, R1_lqi, zeros(6,1));
+% K1_lq = K1_lqi(1,1:4);
+% K1_i = K1_lqi(1,5:6);
 
 % UP UP
 Q2_lqi = diag([2 1 1 0.1 1 1]); 
