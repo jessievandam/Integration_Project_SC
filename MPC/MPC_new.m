@@ -41,12 +41,12 @@ C_new = [1 0 0 0;
     1 1 0 0];
 sysd1_downup = ss(linmat.A4,linmat.B4,C_new,linmat.D4,Ts);
 
-mpcob.predictionhorizon = 10/0.01;
+mpcob.predictionhorizon = 100;
 mpcob.controlhorizon = 10;
-% MV.Min = -1;
-% MV.Max = 1;
-Weights.OutputVariables = [0.6 0.9];
-Weights.ManipulatedVariables = 0.6;
+MV.Min = -1;
+MV.Max = 1;
+Weights.OutputVariables = [0.6 1];
+Weights.ManipulatedVariables = 0;
 Weights.ManipulatedVariablesRate = 0.3320;
 
-MPCobj_downup = mpc(sysd1_updown, 0.01,mpcob.predictionhorizon,mpcob.controlhorizon,Weights,[],OV);
+MPCobj_downup = mpc(sysd1_updown, 0.001,mpcob.predictionhorizon,mpcob.controlhorizon,Weights,[],OV);
