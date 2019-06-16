@@ -47,12 +47,12 @@ K1_i = K1_lqi(1,5:6);
 % Q2_lqi = diag([110 1 1 0 3 0.1]); 
 % R2_lqi = 100; 
 
-Q2_lqi = diag([400 1 1 0 100 0.1]); 
-R2_lqi = 100; 
+% Q2_lqi = diag([400 1 1 0 100 0.1]); 
+% R2_lqi = 100; 
 
 % Final version
-% Q2_lqi = diag([500 1 1 0 400 1]); 
-% R2_lqi = 100; 
+Q2_lqi = diag([500 1 1 0 400 1]); 
+R2_lqi = 100; 
 
 [K2_lqi,~,~] = lqi(sysd2, Q2_lqi, R2_lqi, zeros(6,1));
 K2_lq = K2_lqi(1,1:4);
