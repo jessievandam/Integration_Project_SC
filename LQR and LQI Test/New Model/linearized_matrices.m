@@ -1,4 +1,5 @@
 %% Linearized, discretized state space model
+Ts = 0.01;
 
 % equilibrium 1: [pi;0;0;0] DOWN DOWN
 [A_eq1, B_eq1, C_eq1, D_eq1] = dlinmod('NonlinearModelSimulink_2016b_eq1',Ts,[pi;0;0;0],0);
