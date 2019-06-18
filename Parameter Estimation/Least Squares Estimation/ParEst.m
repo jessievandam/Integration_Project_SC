@@ -14,7 +14,7 @@ data = wrapToPi(data_real);
 datav2 = data-mean(data);
 
 data_start_th2 = 110;                       
-data_end_th2 = 3000+data_start_th2-1;
+data_end_th2 = 1500+data_start_th2-1;
 time_end = data_start_th2-data_end_th2+1;
 data = -datav2(data_start_th2:data_end_th2);
 
@@ -40,7 +40,6 @@ t0 = theta2.time(1:time_end);
 error_th2 = @(vec) MakeErrorTh2(vec,par,data);
 [par_min_th2,~,~,exitflag_th2,output] = lsqnonlin(error_th2,vec_est_th2,lb_th2,ub_th2,opt);
 
-
 [~,theta2_est] = MakeErrorTh2(par_min_th2,par,data);
 VAF_th2 = (1-var(data-theta2_est)/(var(data)))*100;
 
@@ -64,6 +63,7 @@ legend('Estimated parameters','Measured data')
 xlabel('time [sec]');
 ylabel('angle [rad]');
 hold off
+toc
 
 %% Theta 1 only
 par.Ts = 0.01;
