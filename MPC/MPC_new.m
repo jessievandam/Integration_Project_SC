@@ -111,12 +111,12 @@ C_new = [1 0 0 0;
     1 1 0 0];
 sysd1_upup = ss(linmat.A2,linmat.B2,C_new,linmat.D2,Ts);
 
-mpcob.predictionhorizon = 40;
+mpcob.predictionhorizon = 50;
 mpcob.controlhorizon = 10;
 MV.Min = -1;
 MV.Max = 1;
 Weights.OutputVariables = [1 1];
-Weights.ManipulatedVariables = 1;
+Weights.ManipulatedVariables = 2;
 Weights.ManipulatedVariablesRate = 0.1;
 MD = [];
 Models.Plant = sysd1_upup;
