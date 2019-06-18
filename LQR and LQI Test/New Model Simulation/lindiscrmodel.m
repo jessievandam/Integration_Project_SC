@@ -1,11 +1,14 @@
 clear all; close all; clc;
 run('parameters_model.m');
-load('linmat_sim.mat')
+load('linmat_sim.mat');
+load('theta_zeroinput.mat');
 Ts = 0.01;
-h = 0.01;
 
 % eq1, downdown, [pi;0;0;0]
 % eq2, upup, [0;0;0;0]
+
+%% Kalman Filter 
+R_kal = cov(theta.data);
 
 %% Luenberger Observer 
 % DOWN DOWN
