@@ -97,8 +97,8 @@ MV.Max = 1;
 % OV(2).Max = 0.01;
 % OV(2).MinECR = 0.05;
 % OV(2).MaxECR = 0.05;
-Weights.OutputVariables = [15 9];
-Weights.ManipulatedVariables = 100;%100;
-Weights.ManipulatedVariablesRate = 1;
+Weights.OutputVariables = [25 9];
+Weights.ManipulatedVariables = 30;%100;
+Weights.ManipulatedVariablesRate = 20;
 
 MPCobj_upup = mpc(sysd1_upup, 0.01,mpcob.predictionhorizon,mpcob.controlhorizon,Weights,MV);
