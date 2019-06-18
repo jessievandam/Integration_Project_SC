@@ -102,3 +102,25 @@ Weights.ManipulatedVariables = 30;%100;
 Weights.ManipulatedVariablesRate = 20;
 
 MPCobj_upup = mpc(sysd1_upup, 0.01,mpcob.predictionhorizon,mpcob.controlhorizon,Weights,MV);
+
+
+%% Tuning equilibrium 4: up-up
+
+Ts = 0.01;
+C_new = [1 0 0 0;
+    1 1 0 0];
+sysd1_upup = ss(linmat.A2,linmat.B2,C_new,linmat.D2,Ts);
+
+mpcob.predictionhorizon = 40;
+mpcob.controlhorizon = 4;
+MV.Min = -1;
+MV.Max = 1;
+% MV.ScaleFactor = 1;
+% OV(1).ScaleFactor = pi;
+% OV(2).ScaleFactor = pi;
+Weights.OutputVariables = [15 10];
+Weights.ManipulatedVariables = 30;
+Weights.ManipulatedVariablesRate = 5;
+
+MPCobj_tuning = mpc(sysd1_upup, 0.01,mpcob.predictionhorizon,mpcob.controlhorizon,Weights,MV);
+review(MPCobj_tuning)
