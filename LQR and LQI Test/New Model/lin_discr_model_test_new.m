@@ -54,16 +54,16 @@ K1_i = K1_lqi(1,5:6);
 % R2_lqi = 0.1; 
 
 % Equilibrium Version
-% Q2_lqi = diag([15 1 0.1 0.1 1 1]); 
-% R2_lqi = 0.5;
+Q2_lqi = diag([15 1 0.1 0.1 1 1]); 
+R2_lqi = 0.5;
 
 % Square and Sine Reference
 % Q2_lqi = diag([100 1 0.1 0.1 200 1]); 
 % R2_lqi = 20;
 
 % Disturbance Rejection
-Q2_lqi = diag([200 1 10 0.1 100 1]); 
-R2_lqi = 150;
+% Q2_lqi = diag([200 1 10 0.1 100 1]); 
+% R2_lqi = 150;
 
 [K2_lqi,~,~] = lqi(sysd2, Q2_lqi, R2_lqi, zeros(6,1));
 K2_lq = K2_lqi(1,1:4);
