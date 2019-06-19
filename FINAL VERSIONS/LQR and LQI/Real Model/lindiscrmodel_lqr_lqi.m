@@ -15,11 +15,6 @@ R1 = 1;
 [K1,~,~] = dlqr(linmat.A1,linmat.B1,Q1,R1,zeros(4,1));
 
 % UP UP
-% Simulink Version
-% Q2 = diag([10 1 0.5 0.5]); 
-% R2 = 1; 
-
-% Final Version
 Q2 = diag([300 1 0.5 0.5]); 
 R2 = 10; 
 [K2,~,~] = dlqr(linmat.A2,linmat.B2,Q2,R2,zeros(4,1));
@@ -49,21 +44,17 @@ K1_lq = K1_lqi(1,1:4);
 K1_i = K1_lqi(1,5:6);
 
 % UP UP
-% Simulink Version
-% Q2_lqi = diag([10 1 0.1 0.1 1 1]); 
-% R2_lqi = 0.1; 
-
-% Equilibrium Version
-% Q2_lqi = diag([15 1 0.1 0.1 1 1]); 
-% R2_lqi = 0.5;
+% Steady State Regulation
+Q2_lqi = diag([15 1 0.1 0.1 1 1]); 
+R2_lqi = 0.5;
 
 % Square and Sine Reference
 % Q2_lqi = diag([100 1 0.1 0.1 200 1]); 
 % R2_lqi = 20;
 
 % Disturbance Rejection
-Q2_lqi = diag([200 1 10 0.1 100 1]); 
-R2_lqi = 150;
+% Q2_lqi = diag([200 1 10 0.1 100 1]); 
+% R2_lqi = 150;
 
 [K2_lqi,~,~] = lqi(sysd2, Q2_lqi, R2_lqi, zeros(6,1));
 K2_lq = K2_lqi(1,1:4);
@@ -77,10 +68,6 @@ K3_lq = K3_lqi(1,1:4);
 K3_i = K3_lqi(1,5:6);
 
 % DOWN UP
-% Version 1
-% Q4_lqi = diag([2 1 0 0.1 0.1 0.1]); 
-% R4_lqi = 1; 
-
 Q4_lqi = diag([5 1 0 0.1 0.1 0.1]); 
 R4_lqi = 1; 
 [K4_lqi,~,~] = lqi(sysd4, Q4_lqi, R4_lqi, zeros(6,1));

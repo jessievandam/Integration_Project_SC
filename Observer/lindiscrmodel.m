@@ -31,8 +31,8 @@ C_new = [1 0 0 0; 1 1 0 0];
 sysd2 = ss(linmat.A2,linmat.B2,C_new,linmat.D2,Ts);
 
 % Q2_lqi = diag([3 3 0 0 0.5 0.5]); 
-Q2_lqi = diag([2 1 0 0 0.1 0.1]); 
-R2_lqi = 0.1; 
+Q2_lqi = diag([10 1 0.1 0.1 1 1]); 
+R2_lqi = 1; 
 
 [K2_lqi,~,~] = lqi(sysd2, Q2_lqi, R2_lqi, zeros(6,1));
 K2_lq = K2_lqi(1,1:4);

@@ -18,10 +18,12 @@ L1 = place(linmat.A1',linmat.C1',pdes1)';
 eig_obs1 = eig(linmat.A1-L1*linmat.C1);
 
 %% LQR Controller K
+% DOWN DOWN
 Q1 = diag([0.2 0.4 0 0]); 
 R1 = 1; 
 [K1,~,~] = dlqr(linmat.A1,linmat.B1,Q1,R1,zeros(4,1));
 
+% UP UP
 Q2 = diag([10 1 0.5 0.5]);
 R2 = 1;
 [K2,~,~] = dlqr(linmat.A2,linmat.B2,Q2,R2,zeros(4,1));
@@ -30,6 +32,7 @@ R2 = 1;
 C_new = [1 0 0 0; 1 1 0 0];
 sysd2 = ss(linmat.A2,linmat.B2,C_new,linmat.D2,Ts);
 
+% UP UP
 Q2_lqi = diag([10 1 0.1 0.1 1 1]); 
 R2_lqi = 1; 
 
