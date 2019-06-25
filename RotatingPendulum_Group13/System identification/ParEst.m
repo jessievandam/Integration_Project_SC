@@ -63,7 +63,7 @@ legend('Estimated parameters','Measured data')
 xlabel('time [sec]');
 ylabel('angle [rad]');
 hold off
-toc
+
 
 %% Theta 1 only
 par.Ts = 0.01;
@@ -127,7 +127,7 @@ hold off
 
 %% Full model
 
-load('meas_full_square03_30s')
+load('meas_doublepend_square03_30s')
 time_start = 1;
 time_end = 2000;
 data_th1_discr = theta1.data(time_start:time_end);

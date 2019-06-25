@@ -6,12 +6,12 @@ load('Data_real_simplifiedv3');
 data_real = theta2.Data;
 data = -data_real;
 data_start = 29;
-data_end = 1500;
+data_end = 3000;
 time_end = data_start-data_end+1;
 data = data(data_start:data_end);
 data = data - mean(data);
 time = theta2.time;
-time = time(data_start:end);
+% time = time(data_start:end);
 
 opt_fmincon = optimoptions('fmincon');
 opt_fmincon.Display = 'iter';
@@ -34,7 +34,7 @@ error = @(vec) MakeError_singlepend(vec,par,data);
 [~,y0_v2] = MakeError_singlepend(par_min_fmincon_v2,par,data);
 VAF_th2_fmincon_v2 = (1-var(data-y0_v2)/(var(data)))*100;
 
-data_check_v2 = -data_real(29:end);
+data_check_v2 = -data_real(29:3028);
 [~,y0_v2_check] = MakeError_singlepend(par_min_fmincon_v2,par,(data_check_v2));
 VAF_th2_fmincon_v2_check = (1-var(data_check_v2-y0_v2_check)/(var(data_check_v2)))*100;
 

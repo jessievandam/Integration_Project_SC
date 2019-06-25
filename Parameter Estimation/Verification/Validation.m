@@ -25,16 +25,20 @@ plot(t0_square_03,y0_square_03_th2,'-.')
 
 VAF_square_03_th1 = (1-var(data_square_03_th1-y0_square_03_th1)/(var(data_square_03_th1)))*100;
 VAF_square_03_th2 = (1-var(data_square_03_th2-y0_square_03_th2)/(var(data_square_03_th2)))*100;
+rms_square_th1 = rms(data_square_03_th1-y0_square_03_th1);
+rms_square_th2 = rms(data_square_03_th2-y0_square_03_th2);
 
 %% Validation measurement 2, sine wave, right equilibrium
 
 load('Sine_03_right_validation')
-load('Sine_03_sim_validation')
+load('Sine_03_sim_validationv5')
 
 start_sine_03 = 1;
 data_sine_03_th1 = theta1.data(start_sine_03:end);
 data_sine_03_th2 = theta2.data(start_sine_03:end);
 time_sine_03 = theta1.time(1:(end-(start_sine_03)+1));
+% time_sine_03 = theta1.time(1:1000);
+
 
 t0_sine_03 = 0:.01:((length(time_sine_03)/100)-0.01);
 
@@ -50,6 +54,9 @@ plot(t0_sine_03,y0_sine_03_th2,'-.')
 
 VAF_sine_03_th1 = (1-var(data_sine_03_th1-y0_sine_03_th1)/(var(data_sine_03_th1)))*100;
 VAF_sine_03_th2 = (1-var(data_sine_03_th2-y0_sine_03_th2)/(var(data_sine_03_th2)))*100;
+
+rms_sine_th1 = rms(data_sine_03_th1-y0_sine_03_th1);
+rms_sine_th2 = rms(data_sine_03_th2-y0_sine_03_th2);
 
 %% Validation measurement 3, sawtooth, right equilibrium
 
@@ -75,3 +82,6 @@ plot(t0_sawtooth_03,y0_sawtooth_03_th2,'-.')
 
 VAF_sawtooth_03_th1 = (1-var(data_sawtooth_03_th1-y0_sawtooth_03_th1)/(var(data_sawtooth_03_th1)))*100;
 VAF_sawtooth_03_th2 = (1-var(data_sawtooth_03_th2-y0_sawtooth_03_th2)/(var(data_sawtooth_03_th2)))*100;
+rms_sawtooth_th1 = rms(data_sawtooth_03_th1-y0_sawtooth_03_th1);
+rms_sawtooth_th2 = rms(data_sawtooth_03_th2-y0_sawtooth_03_th2);
+
